@@ -10,9 +10,6 @@ public class Main {
         s.nextLine();
 
         Factory factory = new Factory();
-        String prof = "CargoCar";
-        IBuyingBookingCar car = factory.getCurrentCar(prof);
-        System.out.println(car.getCarType());
 
         ArrayList<IBuyingBookingCar> mas = new ArrayList<IBuyingBookingCar>();
 
@@ -37,7 +34,29 @@ public class Main {
             //System.out.println(str[0]);
         }
         fr.close();
-        for (int i=0; i<mas.size(); i++)
-            System.out.println(mas.get(i).ToString());
+
+        int count = 0;
+        System.out.println("");
+        System.out.println("Автомобили с ценой за час более 20 р:");
+        for (int i=0; i<mas.size(); i++) {
+            FuncInterface funcInterface = (zp) -> (zp > 20);
+            if (funcInterface.test(mas.get(i).getHourPrice())){
+                System.out.println(mas.get(i).ToString() + " Цена: " + mas.get(i).getHourPrice());
+                count++;
+            }
+        }
+        System.out.println("Количество: " + count);
+
+        count = 0;
+        System.out.println("");
+        System.out.println("Автомобили с ценой за час более 50 р:");
+        for (int i=0; i<mas.size(); i++) {
+            FuncInterface funcInterface = (zp) -> (zp > 50);
+            if (funcInterface.test(mas.get(i).getHourPrice())){
+                System.out.println(mas.get(i).ToString() + " Цена: " + mas.get(i).getHourPrice());
+                count++;
+            }
+        }
+        System.out.println("Количество: " + count);
     }
 }
